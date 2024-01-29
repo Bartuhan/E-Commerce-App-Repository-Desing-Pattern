@@ -21,6 +21,8 @@ dependencies:
   http: ^1.2.0
   get_storage: ^2.1.1
   logger: ^2.0.2+1
+  flutter_native_splash: ^2.3.9
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:

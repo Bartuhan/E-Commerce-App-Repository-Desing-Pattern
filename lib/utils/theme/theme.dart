@@ -1,11 +1,5 @@
-import 'package:e_commerce_ui_project/utils/theme/custom_themes/appbar_theme.dart';
-import 'package:e_commerce_ui_project/utils/theme/custom_themes/bottomsheet_theme.dart';
-import 'package:e_commerce_ui_project/utils/theme/custom_themes/checkbox_theme.dart';
-import 'package:e_commerce_ui_project/utils/theme/custom_themes/chip_theme.dart';
-import 'package:e_commerce_ui_project/utils/theme/custom_themes/elevated_button_theme.dart';
-import 'package:e_commerce_ui_project/utils/theme/custom_themes/text_form_field_theme.dart';
-import 'package:e_commerce_ui_project/utils/theme/custom_themes/text_theme.dart';
 import 'package:flutter/material.dart';
+import 'custom_themes/index.dart';
 
 class TAppTheme {
   TAppTheme._();
@@ -24,6 +18,7 @@ class TAppTheme {
     checkboxTheme: TCheckBoxTheme.lightTheme,
     chipTheme: TChipTheme.lightTheme,
     inputDecorationTheme: TTextFormFieldTheme.lightTheme,
+    outlinedButtonTheme: TOutlinedButtonTheme.lightTheme,
   );
 
   // Dark Theme -----------------------------------------------------------------
@@ -40,5 +35,6 @@ class TAppTheme {
     checkboxTheme: TCheckBoxTheme.darkTheme,
     chipTheme: TChipTheme.darkTheme,
     inputDecorationTheme: TTextFormFieldTheme.darkTheme,
+    outlinedButtonTheme: TOutlinedButtonTheme.darkTheme,
   );
 }

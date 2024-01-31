@@ -44,7 +44,7 @@ class TTexts {
   static const String signupTitle = 'Let\'s create your account';
   static const String forgetPasswordTitle = 'Forgot Password ?';
   static const String forgetPasswordSubTitle = 'Don\'t worry sometimes poeple can forget too, enter your email and we send you a password resest link.';
-  static const String chanceYourPasswordTitle = 'Password Reset Email Sent';
+  static const String changeYourPasswordTitle = 'Password Reset Email Sent';
   static const String changeYourPasswordSubTitle = 'Your Account Security is Our Priorty! We\'ve Sent You a Secure Link to Safely Change Your Password and Keep Your Account Protected.';
   static const String confirmEmail = 'Verify your email address!';
   static const String confirmEmailSubTitle = 'Congratulations! Your Account Awaits: Verify Your Email to Start Shopping and Experience a World of Unrivaled Deals and Personalized Offers';

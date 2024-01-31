@@ -1,6 +1,11 @@
+import 'package:e_commerce_ui_project/features/authentication/screens/password_configuration/forget_password.dart';
+import 'package:e_commerce_ui_project/features/authentication/screens/signup/signup.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/home/home_screen.dart';
+import 'package:e_commerce_ui_project/navigation_menu.dart';
 import 'package:e_commerce_ui_project/utils/contants/sizes.dart';
 import 'package:e_commerce_ui_project/utils/contants/text_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TLoginForm extends StatelessWidget {
@@ -47,7 +52,7 @@ class TLoginForm extends StatelessWidget {
                 ),
 
                 ///Forget to password
-                TextButton(onPressed: () {}, child: const Text(TTexts.forgetPassword))
+                TextButton(onPressed: () => Get.to(const ForgetPasswordScreen()), child: const Text(TTexts.forgetPassword))
               ],
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
@@ -56,7 +61,7 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Get.offAll(const NavigationMenu()),
                 child: const Text(TTexts.signIn),
               ),
             ),
@@ -64,7 +69,7 @@ class TLoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () => Get.to(const SignUpScreen()),
                 child: const Text(TTexts.createAccount),
               ),
             ),

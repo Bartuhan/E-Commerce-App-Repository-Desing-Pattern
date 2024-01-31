@@ -1,7 +1,7 @@
 import 'package:e_commerce_ui_project/commons/styles/spacing_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../commons/widgets/index.dart';
+import '../../../../commons/widgets/login_signup/index.dart';
 import '../../../../utils/contants/index.dart';
 import 'widgets/index.dart';
 
@@ -16,6 +16,8 @@ class LoginScreen extends StatelessWidget {
           padding: TSpacingStyle.paddingWithAppBarHeight,
           child: Column(
             children: [
+              const SizedBox(height: TSizes.appBarHeight),
+
               /// Logo , title & Subtitle
               const TLoginHeader(),
 

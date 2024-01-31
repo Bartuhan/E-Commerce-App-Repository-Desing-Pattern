@@ -1,5 +1,5 @@
 import 'package:e_commerce_ui_project/utils/contants/sizes.dart';
-import 'package:e_commerce_ui_project/utils/device/device_utils.dart';
+import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingPage extends StatelessWidget {
@@ -19,8 +19,8 @@ class OnBoardingPage extends StatelessWidget {
       child: Column(
         children: [
           Image(
-            width: TDeviceUtils.getScreenWidth() * 0.8,
-            height: TDeviceUtils.getScreenheight() * 0.6,
+            width: THelperFunctions.screenWith() * 0.8,
+            height: THelperFunctions.screenHeight() * 0.6,
             image: AssetImage(image),
           ),
           Text(

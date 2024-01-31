@@ -10,4 +10,9 @@ class TImages {
 
   static const String google = 'assets/images/google_logo.png';
   static const String facebook = 'assets/images/facebook_logo.png';
+
+  // Animations
+
+  static const String successIllustration = 'assets/animations/verify.gif';
+  static const String deliveredEmailIllustration = 'assets/animations/delivered_email.png';
 }

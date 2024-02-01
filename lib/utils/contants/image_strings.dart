@@ -15,4 +15,16 @@ class TImages {
 
   static const String successIllustration = 'assets/animations/verify.gif';
   static const String deliveredEmailIllustration = 'assets/animations/delivered_email.png';
+
+  // Icons
+
+  static const String sportIcon = 'assets/icons/categories/sports.png';
+  static const String toysIcon = 'assets/icons/categories/toys.png';
+  static const String animalsIcon = 'assets/icons/categories/animals.png';
+  static const String clothesIcon = 'assets/icons/categories/clothes.png';
+  static const String electronicsIcon = 'assets/icons/categories/electronics.png';
+  static const String furnituresIcon = 'assets/icons/categories/furnitures.png';
+  static const String jeweleryIcon = 'assets/icons/categories/jewelery.png';
+  static const String shoesIcon = 'assets/icons/categories/shoes.png';
+  static const String cosmeticIcon = 'assets/icons/categories/cosmetic.png';
 }

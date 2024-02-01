@@ -2,6 +2,7 @@ import 'package:e_commerce_ui_project/commons/widgets/login_signup/form_divider.
 import 'package:e_commerce_ui_project/commons/widgets/login_signup/social_buttons.dart';
 import 'package:e_commerce_ui_project/features/authentication/screens/signup/widget/signup_form.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
+import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,9 +11,9 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final dark = THelperFunctions.isDarkMode(context);
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      appBar: AppBar(iconTheme: const IconThemeData(color: Colors.white)),
+      appBar: AppBar(iconTheme: IconThemeData(color: dark ? Colors.white : Colors.black)),
       body: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: Column(

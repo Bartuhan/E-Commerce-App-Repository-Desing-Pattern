@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'custom_themes/index.dart';
 
 class TAppTheme {
@@ -25,7 +26,7 @@ class TAppTheme {
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     fontFamily: 'Poppins',
-    brightness: Brightness.light,
+    brightness: Brightness.dark,
     primaryColor: Colors.deepPurple,
     scaffoldBackgroundColor: Colors.black,
     textTheme: TTextTheme.darkTextTheme,

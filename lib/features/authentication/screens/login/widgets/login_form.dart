@@ -1,6 +1,5 @@
 import 'package:e_commerce_ui_project/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:e_commerce_ui_project/features/authentication/screens/signup/signup.dart';
-import 'package:e_commerce_ui_project/features/shop/screens/home/home_screen.dart';
 import 'package:e_commerce_ui_project/navigation_menu.dart';
 import 'package:e_commerce_ui_project/utils/contants/sizes.dart';
 import 'package:e_commerce_ui_project/utils/contants/text_strings.dart';

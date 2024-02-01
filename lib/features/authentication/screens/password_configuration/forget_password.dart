@@ -13,9 +13,12 @@ class ForgetPasswordScreen extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios_new,
-          color: dark ? Colors.black : Colors.white,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_new,
+            color: dark ? TColors.light : TColors.dark,
+          ),
+          onPressed: () => Get.back(),
         ),
       ),
       body: Padding(

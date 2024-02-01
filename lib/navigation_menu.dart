@@ -11,14 +11,13 @@ class NavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
-    final darkmode = THelperFunctions.isDarkMode(context);
+    final darkMode = THelperFunctions.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: Obx(
         () => NavigationBar(
-          height: 80,
           elevation: 0,
-          backgroundColor: darkmode ? Colors.black : Colors.white,
-          indicatorColor: darkmode ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1),
+          backgroundColor: darkMode ? Colors.black : Colors.white,
+          indicatorColor: darkMode ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1),
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) => controller.selectedIndex.value = index,
           destinations: const [

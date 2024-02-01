@@ -1,7 +1,6 @@
 import 'package:e_commerce_ui_project/commons/widgets/success_screen/success_screen.dart';
 import 'package:e_commerce_ui_project/features/authentication/screens/login/login_screen.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
-import 'package:e_commerce_ui_project/utils/device/device_utils.dart';
 import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

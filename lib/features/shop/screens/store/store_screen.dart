@@ -1,7 +1,6 @@
 import 'package:e_commerce_ui_project/commons/widgets/appbar/appbar.dart';
 import 'package:e_commerce_ui_project/commons/widgets/appbar/tabbar.dart';
 import 'package:e_commerce_ui_project/commons/widgets/brands/brand_card.dart';
-import 'package:e_commerce_ui_project/commons/widgets/brands/brand_show_case.dart';
 import 'package:e_commerce_ui_project/commons/widgets/containers/search_container.dart';
 import 'package:e_commerce_ui_project/commons/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_ui_project/commons/widgets/products/cart/cart_menu_icon.dart';

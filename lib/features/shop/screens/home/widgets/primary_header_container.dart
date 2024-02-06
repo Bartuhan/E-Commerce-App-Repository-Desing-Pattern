@@ -1,4 +1,4 @@
-import 'package:e_commerce_ui_project/commons/widgets/custom_shapes/circular_container.dart';
+import 'package:e_commerce_ui_project/commons/widgets/containers/circular_container.dart';
 import 'package:e_commerce_ui_project/commons/widgets/custom_shapes/custom_curved_edge_widget.dart';
 import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';

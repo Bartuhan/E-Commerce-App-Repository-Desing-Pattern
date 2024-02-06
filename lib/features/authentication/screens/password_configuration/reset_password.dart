@@ -22,7 +22,7 @@ class ResetPasswordScreen extends StatelessWidget {
             children: [
               const SizedBox(height: TSizes.appBarHeight),
               Image(
-                image: const AssetImage(TImages.successIllustration),
+                image: const AssetImage(TImages.staticSuccessIllustration),
                 width: THelperFunctions.screenWith() * 0.6,
               ),
               const SizedBox(height: TSizes.spaceBtwSections),

@@ -26,7 +26,7 @@ class TSectionHeading extends StatelessWidget {
         Text(
           title,
           style: Theme.of(context).textTheme.headlineSmall!.apply(
-                color: textColor ?? (dark ? TColors.dark : TColors.white),
+                color: textColor ?? (dark ? TColors.light : TColors.dark),
               ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
@@ -38,7 +38,7 @@ class TSectionHeading extends StatelessWidget {
               onPressed: onPressed,
               child: Text(
                 buttonTitle,
-                style: Theme.of(context).textTheme.bodySmall!.apply(color: textColor ?? TColors.white),
+                style: Theme.of(context).textTheme.bodySmall!.apply(color: textColor ?? (dark ? TColors.white : TColors.black)),
               ))
       ],
     );

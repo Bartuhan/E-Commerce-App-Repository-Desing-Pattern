@@ -27,7 +27,7 @@ class THomeCategories extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return TVerticalImage(
-                  image: TImages.clothesIcon,
+                  image: TImages.clothIcon,
                   title: 'Clothes',
                   onPress: () {},
                 );

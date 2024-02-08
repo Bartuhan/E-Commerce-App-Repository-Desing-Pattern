@@ -7,6 +7,7 @@ import 'package:e_commerce_ui_project/features/shop/screens/home/widgets/home_ca
 import 'package:e_commerce_ui_project/features/shop/screens/home/widgets/primary_header_container.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
+import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,22 +21,25 @@ class HomeScreen extends StatelessWidget {
           children: [
             //Header
 
-            TPrimaryHeaderContainer(
-              child: Column(
-                children: [
-                  // AppBar
-                  const HomeAppBar(),
+            SizedBox(
+              height: THelperFunctions.screenHeight() * 0.45,
+              child: TPrimaryHeaderContainer(
+                child: Column(
+                  children: [
+                    // AppBar
+                    const HomeAppBar(),
 
-                  // SearchBar
-                  TSearchContainer(
-                    showBorder: false,
-                    text: 'Search in Store',
-                    ontap: () {},
-                  ),
+                    // SearchBar
+                    TSearchContainer(
+                      showBorder: false,
+                      text: 'Search in Store',
+                      ontap: () {},
+                    ),
 
-                  // Categories
-                  const THomeCategories(),
-                ],
+                    // Categories
+                    const THomeCategories(),
+                  ],
+                ),
               ),
             ),
 
@@ -65,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

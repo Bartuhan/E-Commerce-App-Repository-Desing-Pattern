@@ -1,5 +1,7 @@
+import 'package:e_commerce_ui_project/features/personalization/screens/settings/settings.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/home/home_screen.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/store/store_screen.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/wishlist/wishlist.dart';
 import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +41,7 @@ class NavigationController extends GetxController {
   final screens = [
     const HomeScreen(),
     const StoreScreen(),
-    Container(color: Colors.blue),
-    Container(color: Colors.purple),
+    const WishListScreen(),
+    const SettingsScreen(),
   ];
 }

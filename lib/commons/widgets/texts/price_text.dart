@@ -6,6 +6,7 @@ class TProductPriceText extends StatelessWidget {
     required this.price,
     this.currencySign = '₺',
     this.maxlines = 1,
+    this.isDiscount = false,
     this.isLarge = false,
     this.lineThrough = false,
   });
@@ -13,6 +14,7 @@ class TProductPriceText extends StatelessWidget {
   final String currencySign, price;
   final int maxlines;
   final bool isLarge;
+  final bool isDiscount;
   final bool lineThrough;
 
   @override
@@ -21,9 +23,11 @@ class TProductPriceText extends StatelessWidget {
       currencySign + price,
       maxLines: maxlines,
       overflow: TextOverflow.ellipsis,
-      style: isLarge
-          ? Theme.of(context).textTheme.headlineMedium!.apply(decoration: lineThrough ? TextDecoration.lineThrough : null)
-          : Theme.of(context).textTheme.titleLarge!.apply(decoration: lineThrough ? TextDecoration.lineThrough : null),
+      style: isDiscount
+          ? Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)
+          : isLarge
+              ? Theme.of(context).textTheme.headlineMedium!.apply(decoration: lineThrough ? TextDecoration.lineThrough : null)
+              : Theme.of(context).textTheme.titleLarge!.apply(decoration: lineThrough ? TextDecoration.lineThrough : null),
     );
   }
 }

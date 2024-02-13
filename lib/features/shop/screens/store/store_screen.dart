@@ -5,6 +5,7 @@ import 'package:e_commerce_ui_project/commons/widgets/containers/search_containe
 import 'package:e_commerce_ui_project/commons/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_ui_project/commons/widgets/products/cart/cart_menu_icon.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/all_brands/all_brands.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/cart/cart_screen.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/store/widget/category_tab.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
@@ -60,7 +61,7 @@ class StoreScreen extends StatelessWidget {
                       TSectionHeading(
                         title: 'Featured Brands',
                         showActionButton: true,
-                        onPressed: () {},
+                        onPressed: () => Get.to(const AllBrandsScreen()),
                       ),
                       const SizedBox(height: TSizes.spaceBtwItems / 1.5),
 

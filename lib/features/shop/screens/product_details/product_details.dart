@@ -1,11 +1,13 @@
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
-import 'package:e_commerce_ui_project/features/personalization/screens/product_details/widgets/add_to_cart.dart';
-import 'package:e_commerce_ui_project/features/personalization/screens/product_details/widgets/product_attributes.dart';
-import 'package:e_commerce_ui_project/features/personalization/screens/product_details/widgets/product_meta_data.dart';
-import 'package:e_commerce_ui_project/features/personalization/screens/product_details/widgets/product_slider.dart';
-import 'package:e_commerce_ui_project/features/personalization/screens/product_details/widgets/rating_and_share.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/add_to_cart.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/product_attributes.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/product_meta_data.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/product_slider.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/rating_and_share.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/product_reviews/product_review.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 
@@ -64,7 +66,7 @@ class ProductDetailScreen extends StatelessWidget {
                       const TSectionHeading(title: 'Reviews (199)'),
                       IconButton(
                         icon: const Icon(Iconsax.arrow_right_3, size: 18),
-                        onPressed: () {},
+                        onPressed: () => Get.to(const ProductReviewScreen()),
                       ),
                     ],
                   ),

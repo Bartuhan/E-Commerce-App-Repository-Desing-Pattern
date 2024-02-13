@@ -1,7 +1,9 @@
 import 'package:e_commerce_ui_project/commons/widgets/image_text_widgets/category_image.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/sub_category/sub_categories.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class THomeCategories extends StatelessWidget {
   const THomeCategories({
@@ -28,8 +30,8 @@ class THomeCategories extends StatelessWidget {
               itemBuilder: (context, index) {
                 return TVerticalImage(
                   image: TImages.clothIcon,
-                  title: 'Clothes',
-                  onPress: () {},
+                  title: 'Sports',
+                  onPress: () => Get.to(const SubCategoryScreen()),
                 );
               },
             ),

@@ -1,5 +1,6 @@
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:e_commerce_ui_project/utils/device/device_utils.dart';
+import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,12 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         automaticallyImplyLeading: false,
         leading: showBackArrow //
-            ? IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back_ios_new))
+            ? IconButton(
+                onPressed: () => Get.back(),
+                icon: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: THelperFunctions.isDarkMode(context) ? TColors.white : TColors.black,
+                ))
             : leadingIcon != null
                 ? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon))
                 : null,

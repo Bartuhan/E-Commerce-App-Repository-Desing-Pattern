@@ -5,10 +5,12 @@ import 'package:e_commerce_ui_project/commons/widgets/containers/search_containe
 import 'package:e_commerce_ui_project/commons/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_ui_project/commons/widgets/products/cart/cart_menu_icon.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
+import 'package:e_commerce_ui_project/features/shop/screens/cart/cart_screen.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/store/widget/category_tab.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -25,10 +27,8 @@ class StoreScreen extends StatelessWidget {
             'Store',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          actions: [
-            TCartCounterIcon(
-              onPressed: () {},
-            )
+          actions: const [
+            TCartCounterIcon(),
           ],
         ),
         body: NestedScrollView(

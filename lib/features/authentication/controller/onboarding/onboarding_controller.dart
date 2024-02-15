@@ -1,6 +1,8 @@
-import 'package:e_commerce_ui_project/features/authentication/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:e_commerce_ui_project/data/services/local_storage/db_manager.dart';
+import 'package:e_commerce_ui_project/features/authentication/screens/login/login_screen.dart';
 
 class OnBoardingController extends GetxController {
   static OnBoardingController get instance => Get.find();
@@ -21,6 +23,7 @@ class OnBoardingController extends GetxController {
   /// Update Current index & jump tp next page.
   void nextPage() {
     if (currentPageIndex.value == 2) {
+      DbManager.add('isFirstTime', false);
       Get.offAll(const LoginScreen());
     } else {
       int page = currentPageIndex.value + 1;
@@ -30,6 +33,7 @@ class OnBoardingController extends GetxController {
 
   /// Update Current index & jump to last page.
   void skipPage() {
+    DbManager.add('isFirstTime', false);
     Get.offAll(const LoginScreen());
   }
 }

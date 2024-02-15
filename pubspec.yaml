@@ -13,20 +13,31 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  # Icons
   cupertino_icons: ^1.0.2
-  get: ^4.6.6
   iconsax: ^0.0.8
+
+  # Utility Packages
   intl: ^0.19.0
   http: ^1.2.0
-  get_storage: ^2.1.1
   logger: ^2.0.2+1
+  url_launcher: ^6.2.4
   flutter_native_splash: ^2.3.9
   smooth_page_indicator: ^1.1.0
-  carousel_slider: ^4.2.1
+
+  # State Management
+  get: ^4.6.6
+  get_storage: ^2.1.1
+
+  # Product Specific
   readmore: ^2.2.0
+  carousel_slider: ^4.2.1
   flutter_rating_bar: ^4.0.1
+
+  # Firebase
   firebase_core: ^2.25.4
+  lottie: ^3.0.0
+  connectivity_plus: ^5.0.2
 
 dev_dependencies:
   flutter_test:

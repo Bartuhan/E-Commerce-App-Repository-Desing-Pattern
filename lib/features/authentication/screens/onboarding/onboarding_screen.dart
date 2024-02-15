@@ -1,4 +1,4 @@
-import 'package:e_commerce_ui_project/features/authentication/controller/onboarding_controller.dart';
+import 'package:e_commerce_ui_project/features/authentication/controller/onboarding/onboarding_controller.dart';
 import 'package:e_commerce_ui_project/utils/contants/image_strings.dart';
 import 'package:e_commerce_ui_project/utils/contants/text_strings.dart';
 import 'package:flutter/material.dart';

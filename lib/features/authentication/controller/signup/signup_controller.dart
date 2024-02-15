@@ -24,8 +24,8 @@ class SignupController extends GetxController {
       TFullScreenLoader.openLoadingDialog('We are proccessing your information...', TImages.docerAnimation);
 
       // Check Internet Connectivity
-      final isConnected = await NetworkManager.instance.isConnected();
-      if (!isConnected) return;
+      // final isConnected = await NetworkManager.instance.isConnected();
+      // if (!isConnected) return;
 
       // Form Validation
       if (!signupFormKey.currentState!.validate()) return;

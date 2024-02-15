@@ -37,7 +37,7 @@ dependencies:
   # Firebase
   firebase_core: ^2.25.4
   lottie: ^3.0.0
-  connectivity_plus: ^5.0.2
+  # connectivity_plus: ^5.0.2
 
 dev_dependencies:
   flutter_test:

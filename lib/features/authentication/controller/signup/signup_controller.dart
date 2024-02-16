@@ -1,14 +1,9 @@
 import 'package:e_commerce_ui_project/commons/widgets/loaders/loader.dart';
 import 'package:e_commerce_ui_project/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_ui_project/data/repositories/user/user_repository.dart';
-// import 'package:e_commerce_ui_project/data/repositories/authentication/authentication_repository.dart';
-// import 'package:e_commerce_ui_project/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_ui_project/features/authentication/screens/signup/verify_email.dart';
 import 'package:e_commerce_ui_project/features/personalization/models/user_model.dart';
-// import 'package:e_commerce_ui_project/features/personalization/models/user_model.dart';
-import 'package:e_commerce_ui_project/utils/contants/image_strings.dart';
 import 'package:e_commerce_ui_project/utils/popups/full_screen_loader.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

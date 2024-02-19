@@ -64,7 +64,7 @@ class SignupController extends GetxController {
       Tloaders.successSnackBar(title: 'Congratulations', message: 'Your Account has been created');
 
       // Move to Verify Email Screen
-      Get.to(const VerifyEmailScreen());
+      Get.to(VerifyEmailScreen(email: email.text.trim()));
     } catch (e) {
       // Show some Generic Error to the user
       Tloaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());

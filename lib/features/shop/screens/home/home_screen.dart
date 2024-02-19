@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             //Header
 
             SizedBox(
-              height: THelperFunctions.screenHeight() * 0.45,
+              height: THelperFunctions.screenHeight() * 0.47,
               child: TPrimaryHeaderContainer(
                 child: Column(
                   children: [

@@ -1,6 +1,8 @@
 import 'package:e_commerce_ui_project/data/services/local_storage/db_manager.dart';
 import 'package:e_commerce_ui_project/features/authentication/screens/login/login_screen.dart';
 import 'package:e_commerce_ui_project/features/authentication/screens/onboarding/onboarding_screen.dart';
+import 'package:e_commerce_ui_project/features/authentication/screens/signup/verify_email.dart';
+import 'package:e_commerce_ui_project/navigation_menu.dart';
 import 'package:e_commerce_ui_project/utils/exceptions/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -24,13 +26,28 @@ class AuthenticationRepository extends GetxController {
 
   // Function to Show Relevant Screen
   screenRedirect() async {
-    DbManager.addIfNull('isFirstTime', true);
-    DbManager.read('isFirstTime') != true // Check First Time ?
-        ? Get.offAll(const LoginScreen())
-        : Get.offAll(const OnboardingScreen());
+    final user = _auth.currentUser;
+    if (user != null) {
+      if (user.emailVerified) {
+        Get.offAll(const NavigationMenu());
+      } else {
+        Get.offAll(VerifyEmailScreen(
+          email: _auth.currentUser?.email,
+        ));
+      }
+    } else {
+      DbManager.addIfNull('isFirstTime', true);
+      DbManager.read('isFirstTime') != true // Check First Time ?
+          ? Get.offAll(const LoginScreen())
+          : Get.offAll(const OnboardingScreen());
+    }
   }
 
 /* ----------------------- Email And Password Screen ------------------------ */
+
+  /// [EmailAuthentication] - SignIn
+
+  /// [EmailAuthentication] - Register
   Future<UserCredential> registerWithEmailAndPassword({required String email, required String password}) async {
     try {
       return await _auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -46,4 +63,49 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+
+  /// [EmailAuthentication] - Mail Verification
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  /* ---------------- Federated identity & Social sign-in ------------------- */
+
+  // Google Auth
+
+  // Facebook Auth
+
+  /* ------------- ./end Federated identity & Social sign-in ---------------- */
+
+  // Logout User - Valid for any authentication.
+  Future<void> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  // Delete User Remove user Auth FireStore Account
 }

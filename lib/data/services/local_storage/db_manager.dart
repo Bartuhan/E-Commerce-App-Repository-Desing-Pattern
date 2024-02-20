@@ -15,4 +15,12 @@ class DbManager {
   static void addIfNull(String key, dynamic value) {
     storage.writeIfNull(key, value);
   }
+
+  static void delete(String key) {
+    storage.remove(key);
+  }
+
+  static void deleteAll() {
+    storage.erase();
+  }
 }

@@ -64,10 +64,10 @@ class TProductCardHorizontal extends StatelessWidget {
 
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: TSizes.paddingSm, left: TSizes.paddingSm),
+              padding: const EdgeInsets.only(top: TSizes.paddingSm, left: TSizes.paddingSm),
               child: Column(
                 children: [
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TProductTitleText(title: 'Green Nike Half Sleeves Shirt', smallSize: true),
@@ -75,12 +75,12 @@ class TProductCardHorizontal extends StatelessWidget {
                       TBrandTitleWithVerifiedIcon(title: 'Nike'),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // Pricing
-                      Flexible(child: TProductPriceText(price: '256.0')),
+                      const Flexible(child: TProductPriceText(price: '256.0')),
 
                       // Add to Cart
                       Container(

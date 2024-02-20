@@ -38,7 +38,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwSections),
             // Submit Buttons
 
-            SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () => Get.to(const ResetPasswordScreen()), child: Text(TTexts.submit))),
+            SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () => Get.to(const ResetPasswordScreen()), child: const Text(TTexts.submit))),
           ],
         ),
       ),

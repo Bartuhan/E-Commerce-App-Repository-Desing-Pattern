@@ -64,5 +64,13 @@
 		</array>
 		<!-- End of the Google Sign-in Section -->
 
+		<!-- Image Picker Permission  -->
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>This app requires access to the photo library.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>This app requires access to the camera.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>This app requires access to the microphone.</string>
+		<!-- End of the Image Picker Permission  -->
 	</dict>
 </plist>

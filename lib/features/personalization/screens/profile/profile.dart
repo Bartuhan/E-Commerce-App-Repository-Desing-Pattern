@@ -1,5 +1,6 @@
 import 'package:e_commerce_ui_project/commons/widgets/appbar/appbar.dart';
 import 'package:e_commerce_ui_project/commons/widgets/images/circular_image.dart';
+import 'package:e_commerce_ui_project/commons/widgets/shimmer_effect/shimmer_effect.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
 import 'package:e_commerce_ui_project/features/personalization/controller/user_controller.dart';
 import 'package:e_commerce_ui_project/features/personalization/screens/profile/widget/change_name.dart';
@@ -22,8 +23,10 @@ class ProfileScreen extends StatelessWidget {
           onPressed: () => Get.off(const NavigationMenu()),
         ),
         body: SingleChildScrollView(
-          child: Obx(
-            () => Padding(
+          child: Obx(() {
+            final networkImage = controller.user.value.profilePicture;
+            final image = networkImage.isNotEmpty ? networkImage : TImages.user;
+            return Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
@@ -32,16 +35,16 @@ class ProfileScreen extends StatelessWidget {
                     width: double.infinity,
                     child: Column(
                       children: [
-                        TCircularImage(
-                          isNetworkImage: controller.user.value.profilePicture != '' ? true : false,
-                          image: controller.user.value.profilePicture == '' //
-                              ? TImages.user
-                              : controller.user.value.profilePicture,
-                          width: 80,
-                          height: 80,
-                          padding: 0,
-                        ),
-                        TextButton(onPressed: () {}, child: const Text('Change Profile Picture')),
+                        controller.imageUploading.value
+                            ? const TShimmerEffect(width: 80, height: 80, radius: 80)
+                            : TCircularImage(
+                                isNetworkImage: networkImage.isNotEmpty,
+                                image: image,
+                                width: 80,
+                                height: 80,
+                                padding: 0,
+                              ),
+                        TextButton(onPressed: () => controller.uploadUserProfilePicture(), child: const Text('Change Profile Picture')),
                       ],
                     ),
                   ),
@@ -80,8 +83,8 @@ class ProfileScreen extends StatelessWidget {
                   )
                 ],
               ),
-            ),
-          ),
+            );
+          }),
         ));
   }
 }

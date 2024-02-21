@@ -3,12 +3,14 @@ import 'package:e_commerce_ui_project/utils/device/device_utils.dart';
 import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 
 class TAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final bool showBackArrow;
   final IconData? leadingIcon;
   final List<Widget>? actions;
+  final VoidCallback? onPressed;
   final VoidCallback? leadingOnPressed;
 
   const TAppBar({
@@ -17,8 +19,12 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showBackArrow = true,
     this.leadingIcon,
     this.actions,
+    this.onPressed = _defaultOnPressed,
     this.leadingOnPressed,
   });
+
+  static void _defaultOnPressed() => Get.back();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,7 +33,7 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
         automaticallyImplyLeading: false,
         leading: showBackArrow //
             ? IconButton(
-                onPressed: () => Get.back(),
+                onPressed: onPressed,
                 icon: Icon(
                   Icons.arrow_back_ios_new,
                   color: THelperFunctions.isDarkMode(context) ? TColors.white : TColors.black,

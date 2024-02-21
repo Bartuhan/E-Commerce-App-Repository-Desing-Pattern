@@ -23,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
         child: Column(children: [
           // Header
           SizedBox(
-            height: THelperFunctions.screenHeight() * 0.27,
+            height: THelperFunctions.screenHeight() * 0.30,
             child: TPrimaryHeaderContainer(
               child: Column(
                 children: [
@@ -35,7 +35,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
                   TUserProfileTile(
-                    onPressed: () => Get.to(const ProfileScreen()),
+                    onPressed: () => Get.off(const ProfileScreen()),
                   ),
                 ],
               ),

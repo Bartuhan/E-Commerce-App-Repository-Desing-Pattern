@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_ui_project/utils/formatters/formatter.dart';
 
 // To parse this JSON data, do
@@ -12,8 +13,8 @@ String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
   final String id;
-  final String firstName;
-  final String lastName;
+  String firstName;
+  String lastName;
   final String username;
   final String email;
   final String phoneNumber;
@@ -67,6 +68,22 @@ class UserModel {
         "phoneNumber": phoneNumber,
         "profilePicture": profilePicture,
       };
+  factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
+    if (document.data() != null) {
+      final data = document.data()!;
+      return UserModel(
+        id: document.id,
+        firstName: data['firstName'] ?? '',
+        lastName: data['lastName'] ?? '',
+        username: data['username'] ?? '',
+        email: data['email'] ?? '',
+        phoneNumber: data['phoneNumber'] ?? '',
+        profilePicture: data['profilePicture'] ?? '',
+      );
+    } else {
+      return UserModel.empty();
+    }
+  }
 
   // Helper Functions
 

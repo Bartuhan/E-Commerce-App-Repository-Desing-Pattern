@@ -32,7 +32,7 @@ class TCircularImage extends StatelessWidget {
       padding: EdgeInsets.all(padding ?? TSizes.paddingSm),
       decoration: BoxDecoration(
         color: backgroundColor ?? (dark ? TColors.white : TColors.black),
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(width!),
       ),
       child: Image(
         fit: fit,

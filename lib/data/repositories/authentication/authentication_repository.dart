@@ -1,3 +1,4 @@
+import 'package:e_commerce_ui_project/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_ui_project/data/services/local_storage/db_manager.dart';
 import 'package:e_commerce_ui_project/features/authentication/screens/login/login_screen.dart';
 import 'package:e_commerce_ui_project/features/authentication/screens/onboarding/onboarding_screen.dart';
@@ -17,6 +18,9 @@ class AuthenticationRepository extends GetxController {
   // Variables
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
+
+  // Get Authenticated User Data
+  User? get authUser => _auth.currentUser;
 
   // Called from main.dart
   @override
@@ -80,7 +84,7 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  /// [EmailAuthentication] - Mail Verification
+  /// [EmailVerification] - Mail Verification
   Future<void> sendEmailVerification() async {
     try {
       await _auth.currentUser?.sendEmailVerification();
@@ -97,9 +101,46 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  /// [EmailAuthentication] - Forget password
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  /// [ReAuthenticate] - Re authenticate user
+  Future<void> reAuthenticateWithEmailAndPassword(String email, String password) async {
+    try {
+      // Create a credential
+      AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
+
+      // ReAuthenticate
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
   /* ---------------- Federated identity & Social sign-in ------------------- */
 
-  // Google Auth
+  /// [GoogleAuthentication] Google Auth
   Future<UserCredential?> signInWithGoogle() async {
     try {
       // Trigger the authentication flow
@@ -134,7 +175,7 @@ class AuthenticationRepository extends GetxController {
 
   /* ------------- ./end Federated identity & Social sign-in ---------------- */
 
-  // Logout User - Valid for any authentication.
+  /// [LogoutUser] - Valid for any authentication.
   Future<void> logout() async {
     try {
       await GoogleSignIn().signOut();
@@ -154,6 +195,20 @@ class AuthenticationRepository extends GetxController {
   }
 
   // Delete User Remove user Auth FireStore Account
-
-  // 435409494550-04sqbii4kp4m097tk73q54c39s482hn6.apps.googleusercontent.com
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 }

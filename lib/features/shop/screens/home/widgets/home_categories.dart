@@ -1,7 +1,7 @@
 import 'package:e_commerce_ui_project/commons/widgets/image_text_widgets/category_image.dart';
-import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
+import 'package:e_commerce_ui_project/commons/widgets/shimmer_effect/category_shimmer.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/category_controller.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/sub_category/sub_categories.dart';
-import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,32 +12,32 @@ class THomeCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: TSizes.defaultSpace),
-      child: Column(
-        children: [
-          // Popular Categories
-          const TSectionHeading(title: 'Popular Categories'),
-          const SizedBox(height: TSizes.spaceBtwItems),
+    final categoryController = Get.put(CategoryController());
+    return Obx(() {
+      if (categoryController.isLoading.value) {
+        categoryController.onInit();
+        return const TCategoryShimmer();
+      }
 
-          // Categories Image
-          SizedBox(
-            height: 80,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 6,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return TVerticalImage(
-                  image: TImages.clothIcon,
-                  title: 'Sports',
-                  onPress: () => Get.to(const SubCategoryScreen()),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
+      if (categoryController.featuredCategories.isEmpty) {
+        return Center(child: Text('No Data Found!', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white)));
+      }
+      return SizedBox(
+        height: 80,
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: categoryController.featuredCategories.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            final category = categoryController.featuredCategories[index];
+            return TVerticalImage(
+              image: category.image,
+              title: category.name,
+              onPress: () => Get.to(() => const SubCategoryScreen()),
+            );
+          },
+        ),
+      );
+    });
   }
 }

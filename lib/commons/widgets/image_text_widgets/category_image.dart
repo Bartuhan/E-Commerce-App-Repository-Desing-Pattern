@@ -1,3 +1,4 @@
+import 'package:e_commerce_ui_project/commons/widgets/images/circular_image.dart';
 import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +12,13 @@ class TVerticalImage extends StatelessWidget {
     this.textColor,
     this.backgroundColor,
     this.onPress,
+    this.isNetworkImage = true,
   });
 
   final String image, title;
   final Color? textColor;
   final Color? backgroundColor;
+  final bool isNetworkImage;
   final void Function()? onPress;
 
   @override
@@ -27,21 +30,15 @@ class TVerticalImage extends StatelessWidget {
         padding: const EdgeInsets.only(right: TSizes.spaceBtwItems),
         child: Column(
           children: [
-            Container(
+            TCircularImage(
               width: 56,
               height: 56,
-              padding: const EdgeInsets.all(TSizes.paddingSm),
-              decoration: BoxDecoration(
-                color: backgroundColor ?? (dark ? TColors.dark : TColors.light),
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: Image(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover,
-                  color: dark ? TColors.light : TColors.dark,
-                ),
-              ),
+              image: image,
+              fit: BoxFit.fitWidth,
+              padding: TSizes.paddingSm * 1.4,
+              isNetworkImage: isNetworkImage,
+              backgroundColor: backgroundColor,
+              overlayColor: dark ? TColors.light : TColors.dark,
             ),
             const SizedBox(height: TSizes.spaceBtwItems / 2),
             SizedBox(

@@ -1,4 +1,5 @@
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
+import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/add_to_cart.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/product_meta_data.dart';
@@ -12,7 +13,9 @@ import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({super.key});
+  const ProductDetailScreen({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {

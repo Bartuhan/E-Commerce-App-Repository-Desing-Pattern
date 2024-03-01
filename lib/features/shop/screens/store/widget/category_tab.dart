@@ -1,12 +1,20 @@
+import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
+import 'package:flutter/material.dart';
+
 import 'package:e_commerce_ui_project/commons/widgets/brands/brand_show_case.dart';
 import 'package:e_commerce_ui_project/commons/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_ui_project/commons/widgets/products/product_cards/product_cards_vertical.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
+import 'package:e_commerce_ui_project/features/shop/models/category/category_model.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
-import 'package:flutter/material.dart';
 
 class TCategoryTab extends StatelessWidget {
-  const TCategoryTab({super.key});
+  const TCategoryTab({
+    Key? key,
+    required this.category,
+  }) : super(key: key);
+
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +37,7 @@ class TCategoryTab extends StatelessWidget {
 
               TGridLayout(
                 itemCount: 4,
-                itembuilder: (context, index) => const TProductCardVertical(),
+                itembuilder: (context, index) => TProductCardVertical(product: ProductModel.empty()),
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
             ],

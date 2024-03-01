@@ -1,7 +1,9 @@
 import 'package:e_commerce_ui_project/commons/widgets/containers/search_container.dart';
 import 'package:e_commerce_ui_project/commons/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_ui_project/commons/widgets/products/product_cards/product_cards_vertical.dart';
+import 'package:e_commerce_ui_project/commons/widgets/shimmer_effect/vertical_product_shimmer.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/product_controller.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/all_products/all_products.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/home/widgets/home_categories.dart';
@@ -17,6 +19,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -25,21 +28,28 @@ class HomeScreen extends StatelessWidget {
 
             SizedBox(
               height: THelperFunctions.screenHeight() * 0.47,
-              child: TPrimaryHeaderContainer(
+              child: const TPrimaryHeaderContainer(
                 child: Column(
                   children: [
                     // AppBar
-                    const HomeAppBar(),
+                    HomeAppBar(),
 
                     // SearchBar
-                    TSearchContainer(
-                      showBorder: false,
-                      text: 'Search in Store',
-                      ontap: () {},
-                    ),
+                    TSearchContainer(showBorder: false, text: 'Search in Store'),
 
-                    // Categories
-                    const THomeCategories(),
+                    Padding(
+                      padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                      child: Column(
+                        children: [
+                          // Popular Categories
+                          TSectionHeading(title: 'Popular Categories'),
+                          SizedBox(height: TSizes.spaceBtwItems),
+
+                          // Categories Image
+                          THomeCategories(),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -52,23 +62,26 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   // Promo Slider
 
-                  const TPromoSlider(
-                    banners: [TImages.banner1, TImages.banner2, TImages.banner3, TImages.banner4],
-                  ),
+                  const TPromoSlider(),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   TSectionHeading(
                     title: 'Popular Products',
                     showActionButton: true,
-                    onPressed: () => Get.to(const AllProduct()),
+                    onPressed: () => Get.to(() => const AllProduct()),
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   // Product Cards
-                  TGridLayout(
-                    itemCount: 10,
-                    itembuilder: (context, index) => const TProductCardVertical(),
-                  ),
+                  Obx(() {
+                    if (controller.isLoading.value) return const TVericalProductShimmer();
+
+                    if (controller.featuredProducts.isEmpty) return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium));
+                    return TGridLayout(
+                      itemCount: controller.featuredProducts.length,
+                      itembuilder: (context, index) => TProductCardVertical(product: controller.featuredProducts[index]),
+                    );
+                  }),
                 ],
               ),
             ),

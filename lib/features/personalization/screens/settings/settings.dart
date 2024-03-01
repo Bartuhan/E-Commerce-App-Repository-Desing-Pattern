@@ -5,6 +5,7 @@ import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dar
 import 'package:e_commerce_ui_project/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_ui_project/features/personalization/screens/adress/address.dart';
 import 'package:e_commerce_ui_project/features/personalization/screens/profile/profile.dart';
+import 'package:e_commerce_ui_project/features/personalization/screens/settings/upload_data/upload_data.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/home/widgets/primary_header_container.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/order/order.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
@@ -96,7 +97,12 @@ class SettingsScreen extends StatelessWidget {
                 const SizedBox(height: TSizes.spaceBtwSections),
                 const TSectionHeading(title: 'App Settings'),
                 const SizedBox(height: TSizes.spaceBtwItems),
-                const TSettingsMenuTile(icon: Iconsax.document_upload, title: 'Load Data', subTitle: 'Upload Data to your cloud Firebase'),
+                TSettingsMenuTile(
+                  icon: Iconsax.document_upload,
+                  title: 'Load Data',
+                  subTitle: 'Upload Data to your cloud Firebase',
+                  onTap: () => Get.to(() => const UploadDataScreen()),
+                ),
                 TSettingsMenuTile(
                   icon: Iconsax.location,
                   title: 'Geolocation',

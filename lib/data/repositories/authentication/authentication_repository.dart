@@ -34,7 +34,7 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
-        Get.offAll(const NavigationMenu());
+        Get.offAll(() => const NavigationMenu());
       } else {
         Get.offAll(VerifyEmailScreen(
           email: _auth.currentUser?.email,
@@ -43,8 +43,8 @@ class AuthenticationRepository extends GetxController {
     } else {
       DbManager.addIfNull('isFirstTime', true);
       DbManager.read('isFirstTime') != true // Check First Time ?
-          ? Get.offAll(const LoginScreen())
-          : Get.offAll(const OnboardingScreen());
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(() => const OnboardingScreen());
     }
   }
 

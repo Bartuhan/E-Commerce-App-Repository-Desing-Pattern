@@ -6,13 +6,14 @@ class TSettingsMenuTile extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
-    required this.subTitle,
+    this.subTitle,
     this.trailing,
     this.onTap,
   });
 
   final IconData icon;
-  final String title, subTitle;
+  final String title;
+  final String? subTitle;
   final Widget? trailing;
   final VoidCallback? onTap;
 
@@ -21,7 +22,7 @@ class TSettingsMenuTile extends StatelessWidget {
     return ListTile(
       leading: Icon(icon, size: 28, color: TColors.primaryColor),
       title: Text(title, style: Theme.of(context).textTheme.titleMedium),
-      subtitle: Text(subTitle, style: Theme.of(context).textTheme.labelMedium),
+      subtitle: subTitle != null ? Text(subTitle!, style: Theme.of(context).textTheme.labelMedium) : null,
       trailing: trailing,
       onTap: onTap,
     );

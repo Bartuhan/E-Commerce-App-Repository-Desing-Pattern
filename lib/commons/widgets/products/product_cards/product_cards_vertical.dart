@@ -1,25 +1,35 @@
+import 'package:e_commerce_ui_project/features/shop/controller/product_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
+
 import 'package:e_commerce_ui_project/commons/widgets/containers/rounded_container.dart';
 import 'package:e_commerce_ui_project/commons/widgets/icons/circular_icon.dart';
 import 'package:e_commerce_ui_project/commons/widgets/images/rounded_image.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/price_text.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/product_title.dart';
+import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/product_details/product_details.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:e_commerce_ui_project/utils/contants/shadow_styles.dart';
 import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
 class TProductCardVertical extends StatelessWidget {
-  const TProductCardVertical({super.key});
+  const TProductCardVertical({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () => Get.to(const ProductDetailScreen()),
+      onTap: () => Get.to(() => ProductDetailScreen(product: product)),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -38,7 +48,7 @@ class TProductCardVertical extends StatelessWidget {
               child: Stack(
                 children: [
                   // Thumbnail Image
-                  const TRoundedImage(imagePath: TImages.productImage1),
+                  TRoundedImage(imagePath: product.thumbnail, isNetworkImage: true),
 
                   // Sale Tag
                   Positioned(
@@ -47,7 +57,7 @@ class TProductCardVertical extends StatelessWidget {
                       radius: TSizes.paddingSm,
                       backgroundColor: TColors.secondaryColor.withOpacity(0.8),
                       padding: const EdgeInsets.symmetric(horizontal: TSizes.paddingSm, vertical: TSizes.paddingXs),
-                      child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                      child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
                     ),
                   ),
 
@@ -65,14 +75,14 @@ class TProductCardVertical extends StatelessWidget {
             ),
             const SizedBox(height: TSizes.spaceBtwItems / 2),
             // Details
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: TSizes.paddingSm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TProductTitleText(title: 'Green Nike Air Shoes', smallSize: true),
+                  TProductTitleText(title: product.title, smallSize: true),
                   SizedBox(height: TSizes.spaceBtwItems / 2),
-                  TBrandTitleWithVerifiedIcon(title: 'Nike'),
+                  TBrandTitleWithVerifiedIcon(title: product.brand!.name),
                 ],
               ),
             ),
@@ -82,9 +92,25 @@ class TProductCardVertical extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Price Text
-                const Padding(
-                  padding: EdgeInsets.only(left: TSizes.paddingSm),
-                  child: TProductPriceText(price: '250'),
+                Flexible(
+                  child: Column(
+                    children: [
+                      if (product.productType == ProductType.single.toString() && product.salePrice > 0)
+                        Padding(
+                          padding: const EdgeInsets.all(TSizes.paddingSm),
+                          child: Text(
+                            product.price.toString(),
+                            style: Theme.of(context).textTheme.labelMedium!.apply(
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                          ),
+                        ),
+                      Padding(
+                        padding: EdgeInsets.only(left: TSizes.paddingSm),
+                        child: TProductPriceText(price: controller.getProductPrice(product)),
+                      ),
+                    ],
+                  ),
                 ),
 
                 // Add to Cart button

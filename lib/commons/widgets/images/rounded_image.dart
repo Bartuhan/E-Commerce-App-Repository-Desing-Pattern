@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/contants/index.dart';
 
@@ -45,7 +46,7 @@ class TRoundedImage extends StatelessWidget {
           borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
           child: Image(
             fit: fit,
-            image: isNetworkImage ? NetworkImage(imagePath) : AssetImage(imagePath) as ImageProvider,
+            image: isNetworkImage ? CachedNetworkImageProvider(imagePath) : AssetImage(imagePath) as ImageProvider,
           ),
         ),
       ),

@@ -1,4 +1,4 @@
-import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/product/product_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:e_commerce_ui_project/commons/widgets/brands/brand_show_case.dart';
@@ -18,6 +18,7 @@ class TCategoryTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
     return ListView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -37,7 +38,7 @@ class TCategoryTab extends StatelessWidget {
 
               TGridLayout(
                 itemCount: 4,
-                itembuilder: (context, index) => TProductCardVertical(product: ProductModel.empty()),
+                itembuilder: (context, index) => TProductCardVertical(product: controller.featuredProducts[index]),
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
             ],

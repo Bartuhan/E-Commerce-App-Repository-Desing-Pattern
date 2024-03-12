@@ -26,7 +26,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             // Product Image Slider
-            const TProductSlider(),
+            TProductSlider(product: product),
 
             // Product Details
             Padding(
@@ -37,11 +37,11 @@ class ProductDetailScreen extends StatelessWidget {
                   const TRatingandShare(),
 
                   // Price , Title , Stack and Brand
-                  const TProductMetaData(),
+                  TProductMetaData(product: product),
 
                   // - Attributes
-                  const TProductAttributes(),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  if (product.productType == ProductType.variable.toString()) TProductAttributes(product: product),
+                  if (product.productType == ProductType.variable.toString()) const SizedBox(height: TSizes.spaceBtwSections),
 
                   // - Checkout Button
                   SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: const Text('Checkout'))),
@@ -50,14 +50,14 @@ class ProductDetailScreen extends StatelessWidget {
                   // Description
                   const TSectionHeading(title: 'Description'),
                   const SizedBox(height: TSizes.spaceBtwSections),
-                  const ReadMoreText(
-                    'This is Product description for Blue Nike Sleeve less vest. There are more things that can be added but i am just practiciing and nothing else.',
+                  ReadMoreText(
+                    product.description ?? '',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: ' Show more..',
                     trimExpandedText: ' Less',
-                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   // Reviews

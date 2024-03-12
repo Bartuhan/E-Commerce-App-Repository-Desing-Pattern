@@ -3,7 +3,7 @@ import 'package:e_commerce_ui_project/commons/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_ui_project/commons/widgets/products/product_cards/product_cards_vertical.dart';
 import 'package:e_commerce_ui_project/commons/widgets/shimmer_effect/vertical_product_shimmer.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
-import 'package:e_commerce_ui_project/features/shop/controller/product_controller.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/product/product_controller.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/all_products/all_products.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/home/widgets/home_categories.dart';

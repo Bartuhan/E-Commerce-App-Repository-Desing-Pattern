@@ -51,15 +51,16 @@ class TProductCardVertical extends StatelessWidget {
                   TRoundedImage(imagePath: product.thumbnail, isNetworkImage: true),
 
                   // Sale Tag
-                  Positioned(
-                    top: 12,
-                    child: TRoundedContainer(
-                      radius: TSizes.paddingSm,
-                      backgroundColor: TColors.secondaryColor.withOpacity(0.8),
-                      padding: const EdgeInsets.symmetric(horizontal: TSizes.paddingSm, vertical: TSizes.paddingXs),
-                      child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                  if (salePercentage != null)
+                    Positioned(
+                      top: 12,
+                      child: TRoundedContainer(
+                        radius: TSizes.paddingSm,
+                        backgroundColor: TColors.secondaryColor.withOpacity(0.8),
+                        padding: const EdgeInsets.symmetric(horizontal: TSizes.paddingSm, vertical: TSizes.paddingXs),
+                        child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                      ),
                     ),
-                  ),
 
                   //Favorite Icon Button
                   const Positioned(

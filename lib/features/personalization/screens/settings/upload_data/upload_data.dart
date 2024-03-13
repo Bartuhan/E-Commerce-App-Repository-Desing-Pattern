@@ -2,7 +2,9 @@ import 'package:e_commerce_ui_project/commons/widgets/appbar/appbar.dart';
 import 'package:e_commerce_ui_project/commons/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
 import 'package:e_commerce_ui_project/features/shop/controller/banner_controller.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/brand_controller.dart';
 import 'package:e_commerce_ui_project/features/shop/controller/category_controller.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/product/product_controller.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -33,14 +35,14 @@ class UploadDataScreen extends StatelessWidget {
               icon: Iconsax.shop,
               title: 'Upload Brands',
               trailing: const Icon(Iconsax.arrow_circle_up, color: TColors.primaryColor),
-              onTap: () {},
+              onTap: () => BrandController().uploadData(),
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
             TSettingsMenuTile(
               icon: Iconsax.shopping_cart,
               title: 'Upload Products',
               trailing: const Icon(Iconsax.arrow_circle_up, color: TColors.primaryColor),
-              onTap: () {},
+              onTap: () => ProductController().uploadProducts(),
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
             TSettingsMenuTile(

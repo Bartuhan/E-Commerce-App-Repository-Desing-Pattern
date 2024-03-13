@@ -1,7 +1,9 @@
 import 'package:e_commerce_ui_project/commons/widgets/loaders/loader.dart';
+import 'package:e_commerce_ui_project/data/dummy_data.dart';
 import 'package:e_commerce_ui_project/data/repositories/products/product_repository.dart';
 import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
+import 'package:e_commerce_ui_project/utils/popups/full_screen_loader.dart';
 import 'package:get/get.dart';
 
 class ProductController extends GetxController {
@@ -87,5 +89,18 @@ class ProductController extends GetxController {
 
   String getProductStockStatus(int stock) {
     return stock > 0 ? 'In Stock' : 'Out of Stock';
+  }
+
+  Future<void> uploadProducts() async {
+    try {
+      // Start Loading scrren
+      TFullScreenLoader.openLoadingDialog('Uploading Products ...', TImages.docerAnimation);
+
+      await productRepository.uplaodDummyData(TDummyData.products);
+    } catch (e) {
+      Tloaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      TFullScreenLoader.stopLoading();
+    }
   }
 }

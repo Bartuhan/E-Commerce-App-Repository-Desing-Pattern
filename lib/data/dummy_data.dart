@@ -112,7 +112,7 @@ class TDummyData {
       isFeatured: true,
       thumbnail: TImages.productImage4,
       description: 'Green Puma Sports Shoe',
-      brand: BrandModel(id: '1', name: 'Puma', image: TImages.nikeLogo, productsCount: 265, isFeatured: true),
+      brand: BrandModel(id: '2', name: 'Puma', image: TImages.pumaLogo, productsCount: 265, isFeatured: true),
       images: [TImages.productImage1, TImages.productImage23, TImages.productImage21, TImages.productImage9],
       salePrice: 30,
       sku: 'ABR4568',
@@ -177,7 +177,7 @@ class TDummyData {
       isFeatured: true,
       thumbnail: TImages.productImage21,
       description: 'Green Reebok Sports Shoe',
-      brand: BrandModel(id: '1', name: 'Reebok', image: TImages.nikeLogo, productsCount: 265, isFeatured: true),
+      brand: BrandModel(id: '3', name: 'Adidas', image: TImages.adidasLogo, productsCount: 265, isFeatured: true),
       images: [TImages.productImage1, TImages.productImage23, TImages.productImage21, TImages.productImage9],
       salePrice: 30,
       sku: 'ABR4568',
@@ -242,7 +242,7 @@ class TDummyData {
       isFeatured: true,
       thumbnail: TImages.productImage23,
       description: 'Green Adidas Sports Shoe',
-      brand: BrandModel(id: '1', name: 'Adidas', image: TImages.adidasLogo, productsCount: 265, isFeatured: true),
+      brand: BrandModel(id: '4', name: 'Zara', image: TImages.zaraLogo, productsCount: 265, isFeatured: true),
       images: [TImages.productImage1, TImages.productImage23, TImages.productImage21, TImages.productImage9],
       salePrice: 30,
       sku: 'ABR4568',
@@ -309,5 +309,18 @@ class TDummyData {
     BannerModel(imageUrl: TImages.banner5, targetScreen: TRoutes.settings, active: true),
     BannerModel(imageUrl: TImages.banner6, targetScreen: TRoutes.userAddress, active: true),
     BannerModel(imageUrl: TImages.banner8, targetScreen: TRoutes.checkout, active: false),
+  ];
+
+  static final List<BrandModel> brands = [
+    BrandModel(id: '1', name: 'Nike', image: TImages.nikeLogo, isFeatured: true, productsCount: 10),
+    BrandModel(id: '2', name: 'Puma', image: TImages.pumaLogo, isFeatured: true, productsCount: 20),
+    BrandModel(id: '3', name: 'Adidas', image: TImages.adidasLogo, isFeatured: true, productsCount: 30),
+    BrandModel(id: '4', name: 'Zara', image: TImages.zaraLogo, isFeatured: true, productsCount: 40),
+    BrandModel(id: '5', name: 'Jordan', image: TImages.jordanLogo, isFeatured: true, productsCount: 50),
+    BrandModel(id: '6', name: 'Apple', image: TImages.appleLogo, isFeatured: true, productsCount: 60),
+    BrandModel(id: '7', name: 'Kenwood', image: TImages.kenwoodLogo, isFeatured: true, productsCount: 70),
+    BrandModel(id: '8', name: 'Ikea', image: TImages.ikeaLogo, isFeatured: true, productsCount: 80),
+    BrandModel(id: '9', name: 'HermanMiller', image: TImages.hermanMillerLogo, isFeatured: true, productsCount: 90),
+    BrandModel(id: '10', name: 'TStore', image: TImages.darkAppLogo, isFeatured: true, productsCount: 100),
   ];
 }

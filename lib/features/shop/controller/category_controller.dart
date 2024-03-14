@@ -1,7 +1,9 @@
 import 'package:e_commerce_ui_project/commons/widgets/loaders/loader.dart';
 import 'package:e_commerce_ui_project/data/dummy_data.dart';
 import 'package:e_commerce_ui_project/data/repositories/category/category_repository.dart';
+import 'package:e_commerce_ui_project/data/repositories/products/product_repository.dart';
 import 'package:e_commerce_ui_project/features/shop/models/category/category_model.dart';
+import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:e_commerce_ui_project/utils/popups/full_screen_loader.dart';
 import 'package:get/get.dart';
@@ -47,6 +49,10 @@ class CategoryController extends GetxController {
   // Load selected category data
 
   // Get category or Sub-Category Products
+  Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = 4}) async {
+    // Fetch limited (4) products against each subCategory
+    return await ProductRepository.instance.getProductsForCategory(categoryId: categoryId, limit: limit);
+  }
 
   // Upload Category
   Future<void> updloadCategory() async {

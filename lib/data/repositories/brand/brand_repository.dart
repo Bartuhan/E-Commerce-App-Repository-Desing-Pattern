@@ -28,6 +28,28 @@ class BrandRepository extends GetxController {
   }
 
   // Get brands for category
+  Future<List<BrandModel>> getBrandsForCategory(String cateoryId) async {
+    try {
+      // Query to get all documents where categoryId matches the provided categoryId
+      QuerySnapshot brandCategoryQuery = await _db.collection('BrandCategory').where('categoryId', isEqualTo: cateoryId).get();
+      // Extract brandIds from the documents
+      List<String> brandsIds = brandCategoryQuery.docs.map((doc) => doc['brandId'] as String).toList();
+
+      // Query to get all documents where the brandId is in the list of brands, FieldPath.documentId to query documents in Collection
+      final brandsQuery = await _db.collection('Brands').where(FieldPath.documentId, whereIn: brandsIds).limit(1).get();
+
+      // Extract brand names or other revelant data from the documents
+      return brandsQuery.docs.map((doc) => BrandModel.fromSnapshot(doc)).toList();
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw TFormatException(e.message);
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong while getching Banners.';
+    }
+  }
 
   // Upload dummy data
   Future<void> uploadDummyData(List<BrandModel> banners) async {

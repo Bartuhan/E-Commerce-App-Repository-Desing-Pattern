@@ -1,14 +1,13 @@
-import 'package:e_commerce_ui_project/features/shop/controller/product/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import 'package:e_commerce_ui_project/commons/widgets/containers/rounded_container.dart';
-import 'package:e_commerce_ui_project/commons/widgets/icons/circular_icon.dart';
 import 'package:e_commerce_ui_project/commons/widgets/images/rounded_image.dart';
+import 'package:e_commerce_ui_project/commons/widgets/products/favorite_icon/favorite_icon.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/price_text.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/product_title.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/product/product_controller.dart';
 import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/product_details/product_details.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
@@ -67,10 +66,7 @@ class TProductCardVertical extends StatelessWidget {
                   const Positioned(
                     top: 0,
                     right: 0,
-                    child: TCircularIcon(
-                      icon: Iconsax.heart5,
-                      iconColor: Colors.red,
-                    ),
+                    child: TFavoriteIcon(),
                   ),
                 ],
               ),

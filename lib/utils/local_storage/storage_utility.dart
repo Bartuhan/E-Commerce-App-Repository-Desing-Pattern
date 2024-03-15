@@ -1,15 +1,23 @@
 import 'package:get_storage/get_storage.dart';
 
 class TLocaleStorage {
-  static final TLocaleStorage _instance = TLocaleStorage._internal();
+  late final GetStorage _storage;
 
-  factory TLocaleStorage() {
-    return _instance;
-  }
+  // Singleton instance
+  static TLocaleStorage? _instance;
 
   TLocaleStorage._internal();
 
-  final _storage = GetStorage();
+  factory TLocaleStorage.instance() {
+    _instance ??= TLocaleStorage._internal();
+    return _instance!;
+  }
+
+  static Future<void> init(String buckedName) async {
+    await GetStorage.init(buckedName);
+    _instance = TLocaleStorage._internal();
+    _instance!._storage = GetStorage(buckedName);
+  }
 
   // Generic Method to Save Data
   Future<void> saveData<T>(String key, T value) async {

@@ -33,7 +33,7 @@ class THomeCategories extends StatelessWidget {
             return TVerticalImage(
               image: category.image,
               title: category.name,
-              onPress: () => Get.to(() => const SubCategoryScreen()),
+              onPress: () => Get.to(() => SubCategoryScreen(category: category)),
             );
           },
         ),

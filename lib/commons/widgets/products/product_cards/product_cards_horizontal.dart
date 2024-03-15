@@ -1,19 +1,29 @@
-import 'package:e_commerce_ui_project/commons/widgets/containers/rounded_container.dart';
-import 'package:e_commerce_ui_project/commons/widgets/icons/circular_icon.dart';
-import 'package:e_commerce_ui_project/commons/widgets/images/rounded_image.dart';
-import 'package:e_commerce_ui_project/commons/widgets/texts/brand_title_text_with_verified_icon.dart';
-import 'package:e_commerce_ui_project/commons/widgets/texts/price_text.dart';
-import 'package:e_commerce_ui_project/commons/widgets/texts/product_title.dart';
-import 'package:e_commerce_ui_project/utils/contants/index.dart';
-import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/product/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+import 'package:e_commerce_ui_project/commons/widgets/containers/rounded_container.dart';
+import 'package:e_commerce_ui_project/commons/widgets/images/rounded_image.dart';
+import 'package:e_commerce_ui_project/commons/widgets/products/favorite_icon/favorite_icon.dart';
+import 'package:e_commerce_ui_project/commons/widgets/texts/brand_title_text_with_verified_icon.dart';
+import 'package:e_commerce_ui_project/commons/widgets/texts/price_text.dart';
+import 'package:e_commerce_ui_project/commons/widgets/texts/product_title.dart';
+import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
+import 'package:e_commerce_ui_project/utils/contants/index.dart';
+import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
+
 class TProductCardHorizontal extends StatelessWidget {
-  const TProductCardHorizontal({super.key});
+  const TProductCardHorizontal({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelperFunctions.isDarkMode(context);
     return Container(
       width: 310,
@@ -31,31 +41,25 @@ class TProductCardHorizontal extends StatelessWidget {
             backgroundColor: dark ? TColors.dark : TColors.white,
             child: Stack(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: 120,
                   height: 120,
-                  child: TRoundedImage(imagePath: TImages.productImage1, applyImageRadius: true),
+                  child: TRoundedImage(imagePath: product.thumbnail, applyImageRadius: true, isNetworkImage: true),
                 ),
-                // Sale Tag
-                Positioned(
-                  top: 12,
-                  child: TRoundedContainer(
-                    radius: TSizes.paddingSm,
-                    backgroundColor: TColors.secondaryColor.withOpacity(0.8),
-                    padding: const EdgeInsets.symmetric(horizontal: TSizes.paddingSm, vertical: TSizes.paddingXs),
-                    child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                if (salePercentage != null)
+                  // Sale Tag
+                  Positioned(
+                    top: 12,
+                    child: TRoundedContainer(
+                      radius: TSizes.paddingSm,
+                      backgroundColor: TColors.secondaryColor.withOpacity(0.8),
+                      padding: const EdgeInsets.symmetric(horizontal: TSizes.paddingSm, vertical: TSizes.paddingXs),
+                      child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black)),
+                    ),
                   ),
-                ),
 
                 //Favorite Icon Button
-                const Positioned(
-                  top: 0,
-                  right: 0,
-                  child: TCircularIcon(
-                    icon: Iconsax.heart5,
-                    iconColor: Colors.red,
-                  ),
-                ),
+                Positioned(top: 0, right: 0, child: TFavoriteIcon(productId: product.id)),
               ],
             ),
           ),
@@ -67,12 +71,12 @@ class TProductCardHorizontal extends StatelessWidget {
               padding: const EdgeInsets.only(top: TSizes.paddingSm, left: TSizes.paddingSm),
               child: Column(
                 children: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TProductTitleText(title: 'Green Nike Half Sleeves Shirt', smallSize: true),
-                      SizedBox(height: TSizes.spaceBtwItems / 2),
-                      TBrandTitleWithVerifiedIcon(title: 'Nike'),
+                      TProductTitleText(title: product.title, smallSize: true),
+                      const SizedBox(height: TSizes.spaceBtwItems / 2),
+                      TBrandTitleWithVerifiedIcon(title: product.brand!.name),
                     ],
                   ),
                   const Spacer(),
@@ -80,7 +84,13 @@ class TProductCardHorizontal extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // Pricing
-                      const Flexible(child: TProductPriceText(price: '256.0')),
+                      Flexible(
+                        child: Column(
+                          children: [
+                            if (product.productType == ProductType.single.toString() && product.salePrice > 0) TProductPriceText(price: product.price.toString()),
+                          ],
+                        ),
+                      ),
 
                       // Add to Cart
                       Container(

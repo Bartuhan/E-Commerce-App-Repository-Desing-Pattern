@@ -1,4 +1,5 @@
 import 'package:e_commerce_ui_project/commons/widgets/texts/section_headings.dart';
+import 'package:e_commerce_ui_project/features/shop/controller/cart/cart_controller.dart';
 import 'package:e_commerce_ui_project/features/shop/models/product/product_model.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/add_to_cart.dart';
 import 'package:e_commerce_ui_project/features/shop/screens/product_details/widgets/product_attributes.dart';
@@ -19,9 +20,11 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = CartController.instance;
+    final cartItem = controller.convertToCartItem(product, 1);
     // final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      bottomNavigationBar: const TBottomAddToCart(),
+      bottomNavigationBar: TBottomAddToCart(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -44,7 +47,7 @@ class ProductDetailScreen extends StatelessWidget {
                   if (product.productType == ProductType.variable.toString()) const SizedBox(height: TSizes.spaceBtwSections),
 
                   // - Checkout Button
-                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: const Text('Checkout'))),
+                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () => controller.addOneCart(cartItem), child: const Text('Checkout'))),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   // Description

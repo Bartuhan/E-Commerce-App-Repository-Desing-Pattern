@@ -1,14 +1,19 @@
+import 'package:flutter/material.dart';
+
 import 'package:e_commerce_ui_project/commons/widgets/images/rounded_image.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:e_commerce_ui_project/commons/widgets/texts/product_title.dart';
+import 'package:e_commerce_ui_project/features/shop/models/cart/cart_item_modei.dart';
 import 'package:e_commerce_ui_project/utils/contants/index.dart';
 import 'package:e_commerce_ui_project/utils/helpers/helpers.dart';
-import 'package:flutter/material.dart';
 
 class TCartItem extends StatelessWidget {
   const TCartItem({
-    super.key,
-  });
+    Key? key,
+    required this.cartItem,
+  }) : super(key: key);
+
+  final CartItemModel cartItem;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +21,10 @@ class TCartItem extends StatelessWidget {
       children: [
         // Image
         TRoundedImage(
-          imagePath: TImages.productImage1,
+          imagePath: cartItem.image ?? '',
           width: 60,
           height: 60,
+          isNetworkImage: true,
           padding: const EdgeInsets.all(TSizes.paddingSm),
           backgroundColor: THelperFunctions.isDarkMode(context) ? TColors.darkerGrey : TColors.light,
         ),
@@ -30,14 +36,23 @@ class TCartItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TBrandTitleWithVerifiedIcon(title: 'Nike'),
-              const Flexible(child: TProductTitleText(title: 'Green Sports shoes', maxlines: 1)),
-              Text.rich(TextSpan(children: [
-                TextSpan(text: 'Color ', style: Theme.of(context).textTheme.bodySmall),
-                TextSpan(text: 'Green ', style: Theme.of(context).textTheme.bodyLarge),
-                TextSpan(text: 'Size ', style: Theme.of(context).textTheme.bodySmall),
-                TextSpan(text: 'UK 08 ', style: Theme.of(context).textTheme.bodyLarge),
-              ]))
+              TBrandTitleWithVerifiedIcon(title: cartItem.brandName ?? ''),
+              Flexible(child: TProductTitleText(title: cartItem.title, maxlines: 1)),
+              Text.rich(
+                TextSpan(
+                  children: (cartItem.selectedVariation ?? {})
+                      .entries
+                      .map(
+                        (e) => TextSpan(
+                          children: [
+                            TextSpan(text: e.key, style: Theme.of(context).textTheme.bodySmall),
+                            TextSpan(text: e.value, style: Theme.of(context).textTheme.bodyLarge),
+                          ],
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
             ],
           ),
         )
